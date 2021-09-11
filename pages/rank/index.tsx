@@ -1,61 +1,61 @@
 import * as React from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@material-ui/data-grid';
+import Grid from '@material-ui/core/Grid';
+import Layout from '../../components/layout'
 
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 100 },
+  { field: 'id', headerName: '順位', width: 100 },
   {
-    field: 'firstNames',
-    headerName: 'First name',
+    field: 'name',
+    headerName: '名前',
     width: 150,
     editable: true,
   },
   {
-    field: 'lastName',
-    headerName: 'Last name',
+    field: 'score',
+    headerName: 'score',
     width: 150,
     editable: true,
   },
   {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    width: 110,
+    field: 'scoreDifference',
+    headerName: 'score差',
+    width: 150,
     editable: true,
   },
   {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
+    field: 'scoreDifferenceFromTop',
+    headerName: '1位までの差',
     sortable: false,
-    width: 160,
-    valueGetter: (params: GridValueGetterParams) =>
-      `${params.getValue(params.id, 'firstName') || ''} ${
-        params.getValue(params.id, 'lastName') || ''
-      }`,
+    width: 160
   },
 ];
 
 const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+  { id: 1, name: 'Snow', score: 'Jon', scoreDifference: 35, scoreDifferenceFromTop: 0 },
+  { id: 2, name: 'Lannister', score: 'Cersei', scoreDifference: 42, scoreDifferenceFromTop: 0 },
+  { id: 3, name: 'Lannister', score: 'Jaime', scoreDifference: 45, scoreDifferenceFromTop: 0 },
+  { id: 4, name: 'Stark', score: 'Arya', scoreDifference: 16, scoreDifferenceFromTop: 0 },
+  { id: 5, name: 'Targaryen', score: 'Daenerys', scoreDifference: null, scoreDifferenceFromTop: 0 },
+  { id: 6, name: 'Melisandre', score: null, scoreDifference: 150, scoreDifferenceFromTop: 0 },
+  { id: 7, name: 'Clifford', score: 'Ferrara', scoreDifference: 44, scoreDifferenceFromTop: 0 },
+  { id: 8, name: 'Frances', score: 'Rossini', scoreDifference: 36, scoreDifferenceFromTop: 0 },
+  { id: 9, name: 'Roxie', score: 'Harvey', scoreDifference: 65, scoreDifferenceFromTop: 0 },
 ];
 
 export default function DataTable() {
   return (
-    <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={5}
-        disableSelectionOnClick
-      />
-    </div>
+    <Layout>
+    <Grid container alignItems="center" justify="center">
+      <div style={{ height: 600, width: '80%' }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={10}
+          disableSelectionOnClick
+        />
+        </div>
+    </Grid>
+    </Layout>
   );
 }
